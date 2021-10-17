@@ -1,0 +1,16 @@
+demo=> create table Genre(id serial primary key, title varchar(40) not null unique);
+CREATE TABLE
+demo=> create table Artist(id serial primary key, title varchar(40) not null);
+CREATE TABLE
+demo=> create table Album(id serial primary key, title varchar(40) not null, year_of_edition integer not null);
+CREATE TABLE
+demo=> create table GenreArtist(genre_id integer references Genre(id), artist_id integer references Artist(id), constraint pk_GenreArtist primary key (genre_id, artist_id));
+CREATE TABLE
+demo=> create table ArtistAlbum(artist_id integer references Artist(id), album_id integer references Album(id), constraint pk_ArtistAlbum primary key (artist_id, album_id));
+CREATE TABLE
+demo=> create table Track(id serial primary key, title varchar(40) not null, duration integer not null, Album_Id integer references Album(id));
+CREATE TABLE
+demo=> create table Collection(id serial primary key, title varchar(40) not null, year_of_edition integer not null);
+CREATE TABLE
+demo=> create table CollectionTrack(collection_id integer references Collection(id), track_id integer references Track(id), constraint pk_CollectionTrack primary key (collection_id, track_id));
+CREATE TABLE
